@@ -1,0 +1,52 @@
+{
+  "name": "xylo",
+  "version": "0.0.1",
+  "description": "Xyla utility scripts.",
+  "main": "./index.js",
+  "types": "./types/types.d.ts",
+  "scripts": {
+    "start_preview": "concurrently --kill-others 'npm run build &> /dev/null && npm run build_continuous &> /dev/null' 'npm run type &> /dev/null && npm run type_continuous &> /dev/null' 'npm run preview &> /dev/null' 'sleep 3 && npm run test_continuous'",
+    "start_webpack": "webpack --mode development --watch --info-verbosity verbose",
+    "start": "tsc -w",
+    "start_workers": "tsc -w -p tsconfig.workers.json",
+    "build": "webpack --mode production",
+    "build_debug": "webpack --mode development",
+    "test": "./node_modules/karma/bin/karma start karma.conf.js",
+    "test_continuous": "./node_modules/karma/bin/karma start karma_continuous.conf.js --debug",
+    "type": "jsdoc -c jsdoc_type.conf.json",
+    "type_continuous": "onchange 'xylo/**/*.js' 'xyla/**/*.js' -- npm run type",
+    "document": "./document.sh",
+    "docs": "browser-sync start --server 'dist/docs' --files 'dist/docs/**/*.*' --port 5000",
+    "preview": "browser-sync start --config bs-config-preview.js",
+    "build_continuous": "onchange 'xylo/**/*.js' 'xyla/**/*.js' -- npm run build"
+  },
+  "author": "Xyla",
+  "license": "MIT",
+  "repository": "github:xyla-io/xylo",
+  "devDependencies": {
+    "@types/plotly.js": "^1.50.17",
+    "bootstrap": "^3.4.1",
+    "browser-sync": "^2.26.7",
+    "concurrently": "^4.1.0",
+    "dataframe-js": "^1.4.3",
+    "documentation": "^8.1.2",
+    "highcharts": "^7.0.2",
+    "jasmine-core": "^3.3.0",
+    "jsdoc": "^3.6.3",
+    "karma": "^3.1.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-jasmine": "^1.1.2",
+    "onchange": "^5.2.0",
+    "postman-jsdoc-theme": "0.0.3",
+    "ts-loader": "^8.0.3",
+    "tsd-jsdoc": "^2.4.0",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "plotly.js-dist": "^1.54.7",
+    "pouchdb": "^7.2.2"
+  }
+}

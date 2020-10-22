@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "target": "ES6",
+    "moduleResolution": "node",
+    "outDir": "dist/workers",
+    // "extendedDiagnostics": true,
+  },
+  "include": [
+    "./src/worker",
+    "./src/common",
+    "./xylo",
+    "./xyla",
+  ],
+  "lib": [
+    "webworker"
+  ]
+}

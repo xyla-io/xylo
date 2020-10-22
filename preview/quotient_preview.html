@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Xyla Quotient Graph Preview</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="node_modules/highcharts/highcharts.js"></script>
+    <script>
+      window.datasets = [
+        {
+          queryName: 'test_data_set',
+          content: [
+            {n1: 1, n2: 2, n3: 3, s1: 'a', s2: 'b', s3: 'c', d1: '2019-01-07T00:00:00.000Z'},
+            {n1: 4, n2: 5, n3: 6, s1: 'a', s2: 'b', s3: 'd', d1: '2019-01-08T00:00:00.000Z'},
+            {n1: 7, n2: 8, n3: 9, s1: 'a', s2: 'e', s3: 'f', d1: '2019-01-10T00:00:00.000Z'},
+          ],
+        },
+      ];
+    </script>
+  </head>
+  <body>
+    <script src="xyla/xyla.js"></script>
+    <script src="xyla/xyla_tools.js"></script>
+    <script src="xyla/xyla_formatters.js"></script>
+    <script src="xyla/xyla_transformers.js"></script>
+    <script src="xyla/xyla_default.js"></script>
+    <script src="xyla/xyla_thumbnail.js"></script>
+    <script src="xyla/xyla_bi.js"></script>
+    <script src="xyla/xyla_grapher.js"></script>
+
+    <div id="graph"></div>
+    <script>
+      let options = {
+        type: xyla.GraphType.bar,
+        title: 'Test Graph Title',
+        xAxisOptions: {
+          title: 's3',
+          markers: [{
+            position: 2,
+            title: 'Uncrystallized',
+            type: xyla.AxisMarkerType.longDash,
+          }],
+        },
+        yAxisOptions: {
+          title: 'n2',
+          markers: [{
+            position: 2.5,
+            title: 'Benchmark',
+            type: xyla.AxisMarkerType.dot,
+          }],
+        },
+      };
+      let vectors = xyla.bi.mode.dataVectors('test_data_set');
+      let graph1 = new xyla.Graph()
+        .setDataVectors(vectors)
+        .setGroupName('test group')
+        .addDistinctValuesDimension('s2')
+        .addQuotientDimension('n1', 'n2')
+        // .graphOptions(options)
+        .setElementOptions({elementID: 'graph', title: 'Quotient class preview'})
+        .render();
+    </script>
+  </body>
+</html>

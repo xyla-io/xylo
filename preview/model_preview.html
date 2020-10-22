@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Xylo Model Preview</title>
+    <link rel="stylesheet" href="preview.css">
+    <script src="node_modules/dataframe-js/dist/dataframe.js"></script>
+    <script src="xylo/xylo.js"></script>
+    <script src="xylo/xylo_fetch.js"></script>
+  </head>
+  <body>
+    <iframe src="menu.html" frameborder="0" name="menu_frame""></iframe>
+    <div id="output"></div>
+    <script>
+      console.log('xylo:', xylo);
+      let model = new xylo.Model();
+      async function fetchData() {
+        await model.fetchDataSet('x', 'https://example.com/data.csv');
+        document.getElementById('output').innerHTML = 'Xylo data set count: ' + Object.keys(model.dataSets).length;
+        console.log('model:', model);
+      }
+      fetchData();
+    </script>
+  </body>
+</html>

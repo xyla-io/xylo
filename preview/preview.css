@@ -1,0 +1,16 @@
+html {
+  font-family: sans-serif;
+}
+body {
+  margin: 0;
+  padding: 24px;
+}
+ul {
+  width: 240px;
+  float: right;
+}
+iframe {
+  width: 240px;
+  height: 100%;
+  float: right;
+}

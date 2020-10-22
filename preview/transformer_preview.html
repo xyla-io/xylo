@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Xylo Transformer Preview</title>
+    <link rel="stylesheet" href="preview.css">
+    <script src="node_modules/dataframe-js/dist/dataframe.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/annotations.js"></script>
+    <script src="xyla/xyla.js"></script>
+    <script src="xyla/xyla_tools.js"></script>
+    <script src="xyla/xyla_transformers.js"></script>
+    <script src="xyla/xyla_formatters.js"></script>
+    <script src="xyla/xyla_grapher.js"></script>
+    <script src="xyla/xyla_default.js"></script>
+  </head>
+  <body>
+    <iframe src="menu.html" frameborder="0" name="menu_frame""></iframe>
+    <div id="output"></div>
+    <script>
+(async function() {
+  console.log('xyla:', xyla);
+  // var httpRequest;
+  // csvRequest = new XMLHttpRequest();
+  // csvRequest.onreadystatechange = () => {
+  //   if (csvRequest.readyState !== XMLHttpRequest.DONE) { return; }
+  //   console.log(csvRequest.responseText);
+  // };
+  // csvRequest.open('GET', 'transformer_preview.csv');
+  // csvRequest.send();
+  const df = await dfjs.DataFrame.fromCSV('transformer_preview.csv');
+  const data = df.toCollection();
+  console.log('data:',data);
+
+  const vectors = [
+    {
+      vector: [],
+      rows: data,
+    },
+  ];
+
+  const graph = new xyla.Graph()
+    .setDataVectors(vectors)
+    .transform(xyla.transformers.row.mapCells({
+      spend: parseFloat,
+      installs: parseInt,
+    }))
+    .transform(xyla.transformers.row.jsonColumns('tags', column => 'tag_' + column, null, false))
+    .transform(xyla.transformers.row.filterValues('tag_geo', ['US'], false))
+    .transform(xyla.transformers.group.by(['tag_os', 'tag_audience_l3'], ' '))
+    .transform(xyla.transformers.group.distinct('date'))
+    .transform(xyla.transformers.vector.timestamp(-1))
+    .transform(xyla.transformers.data.sortIndices(-1))
+    .transform(xyla.transformers.aggregate.sum('spend'));
+
+  console.log('vectors', graph.dataVectors);
+
+  graph.setElementOptions({
+      elementID: 'output',
+      title: 'Transformed Data',
+    })
+    .setGraphOptions(xyla.default.graphOptions)
+    .render();
+})();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Xyla Thumbail Preview</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="node_modules/highcharts/highcharts.js"></script>
+    <script>
+      window.datasets = [
+        {
+          queryName: 'test_data_set',
+          content: [
+            {n1: 1, n2: 2, n3: 3, s1: 'a', s2: 'b', s3: 'c', d1: '2019-01-07T00:00:00.000Z', u1: 'https://dummyimage.com/640x4:3&text=X'},
+            {n1: 4, n2: 5, n3: 6, s1: 'a', s2: 'b', s3: 'd', d1: '2019-01-08T00:00:00.000Z', u1: 'https://dummyimage.com/640x4:3&text=Y'},
+            {n1: 7, n2: 8, n3: 9, s1: 'a', s2: 'e', s3: 'f', d1: '2019-01-10T00:00:00.000Z', u1: 'https://dummyimage.com/640x4:3&text=L'},
+            {n1: 7, n2: 8, n3: 9, s1: 'a', s2: 'e', s3: 'f', d1: '2019-01-10T00:00:00.000Z', u1: 'https://dummyimage.com/640x4:3&text=O'},
+          ],
+        },
+      ];
+    </script>
+  </head>
+  <body>
+    <script src="xyla/xyla.js"></script>
+    <script src="xyla/xyla_tools.js"></script>
+    <script src="xyla/xyla_formatters.js"></script>
+    <script src="xyla/xyla_transformers.js"></script>
+    <script src="xyla/xyla_default.js"></script>
+    <script src="xyla/xyla_thumbnail.js"></script>
+    <script src="xyla/xyla_bi.js"></script>
+    <script src="xyla/xyla_grapher.js"></script>
+
+    <style id="thumbnail_styles"></style>
+    <div id="thumbnails"></div>
+    <script>
+      xyla.thumbnail.addThumbnailStyles('#thumbnail_styles');
+      xyla.thumbnail.generateThumbnails('#thumbnails', 'test_data_set', 's2', 'u1', 'u1')
+    </script>
+  </body>
+</html>

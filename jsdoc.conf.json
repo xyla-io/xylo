@@ -1,0 +1,22 @@
+{
+  "source": {
+    "include": [
+      "xylo",
+      "xyla"
+    ]
+  },
+  "plugins": ["plugins/markdown"],
+  "opts": {
+    "template": "./node_modules/postman-jsdoc-theme",
+    "destination": "./build/documentation",
+    "tutorials": "./documentation/tutorials"
+  },
+  "templates": {
+    "default": {
+      "staticFiles": {
+        "include": ["documentation/tutorials/static/"]
+      }
+    }
+  }
+}
+

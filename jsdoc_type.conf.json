@@ -1,0 +1,10 @@
+{
+  "source": {
+    "include": ["xylo"]
+  },
+  "opts": {
+    "template": "./node_modules/tsd-jsdoc/dist",
+    "destination": "./types"
+  }
+}
+

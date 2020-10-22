@@ -1,0 +1,2 @@
+url,channel,entity,id,date,spend,installs,number,tags
+channel_entity://tiktok/campaign/123,TikTok,campaign,123,2020-00-01,100,1000,50,"{""tag1"":""tag1_value"",""tag2"":""tag2_value""}"

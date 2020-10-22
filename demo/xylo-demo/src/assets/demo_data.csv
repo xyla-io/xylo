@@ -1,0 +1,2 @@
+daily_cohort,weekly_cohort,monthly_cohort,platform,product_name,campaign_name,adset_name,channel,campaign_id,campaign_tag,campaign_subtag,adset_tag,adset_tag,event_name,revenue_type,spend,cohort_events,cohort_revenue,event_day,event_week,mmp
+2019-01-01,2019-01-01,2019-01-01,ios,Goalie,Goalie OS US Exact Match Brand Defense,Adset 1,Apple,123,Untagged,US,,,,,0,,,0,0,

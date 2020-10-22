@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "target": "ES6",
+    "moduleResolution": "node",
+    "outDir": "dist/browser",
+    // "extendedDiagnostics": true,
+  },
+  "include": [
+    "./src/browser",
+    "./src/common",
+    "./xylo",
+    "./xyla",
+  ],
+  "lib": [
+    "dom",
+  ]
+}

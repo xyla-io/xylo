@@ -1,0 +1,8 @@
+/docs/*
+  Basic-Auth: USER:EXAMPLE_PASS_uAQt245Y7zJkJyvh8Ceg7CknKW3lgNvH0H9rEvAi2M
+
+/dist/*
+  Access-Control-Allow-Origin: *
+
+/src/*
+  Access-Control-Allow-Origin: *

@@ -1,0 +1,15 @@
+{
+  "importing-xyla": {
+    "title":"Xyla + Mode Analytics",
+    "children": [
+      "bi-mode-graph",
+      "bi-mode-demos"
+    ]
+  },
+  "bi-mode-graph": {
+    "title":"Graphing in Mode Analytics"
+  },
+  "bi-mode-demos": {
+    "title":"Mode+Xyla Demo Reports"
+  }
+}

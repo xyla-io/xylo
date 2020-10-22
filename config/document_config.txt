@@ -1,0 +1,2 @@
+raspador raspador master documentation/sphinx/_build/html
+longcat_api longcat_api master documentation/dist

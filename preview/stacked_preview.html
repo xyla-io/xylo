@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Xyla Stacked Graph Preview</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="node_modules/highcharts/highcharts.js"></script>
+    <script>
+      window.datasets = [
+        {
+          queryName: 'test_data_set',
+          content: [
+            {n1: 1, s1: 'a', d1: '2019-01-07T00:00:00.000Z'},
+            {n1: 1, s1: 'b', d1: '2019-01-07T00:00:00.000Z'},
+            {n1: 5, s1: 'c', d1: '2019-01-07T00:00:00.000Z'},
+            {n1: 2, s1: 'd', d1: '2019-01-07T00:00:00.000Z'},
+
+            {n1: 4, s1: 'b', d1: '2019-01-08T00:00:00.000Z'},
+            {n1: 4, s1: 'a', d1: '2019-01-08T00:00:00.000Z'},
+            {n1: 4, s1: 'c', d1: '2019-01-08T00:00:00.000Z'},
+            {n1: 4, s1: 'a', d1: '2019-01-08T00:00:00.000Z'},
+
+            {n1: 7, s1: 'c', d1: '2019-01-09T00:00:00.000Z'},
+            {n1: 4, s1: 'b', d1: '2019-01-09T00:00:00.000Z'},
+            {n1: 4, s1: 'd', d1: '2019-01-09T00:00:00.000Z'},
+
+            {n1: 7, s1: 'a', d1: '2019-01-10T00:00:00.000Z'},
+            {n1: 4, s1: 'b', d1: '2019-01-10T00:00:00.000Z'},
+            {n1: 4, s1: 'd', d1: '2019-01-10T00:00:00.000Z'},
+          ],
+        },
+      ];
+    </script>
+  </head>
+  <body>
+    <script src="xyla/xyla.js"></script>
+    <script src="xyla/xyla_tools.js"></script>
+    <script src="xyla/xyla_formatters.js"></script>
+    <script src="xyla/xyla_transformers.js"></script>
+    <script src="xyla/xyla_default.js"></script>
+    <script src="xyla/xyla_thumbnail.js"></script>
+    <script src="xyla/xyla_bi.js"></script>
+    <script src="xyla/xyla_grapher.js"></script>
+
+    <div id="graph"></div>
+    <script>
+      let options = {
+        type: xyla.GraphType.stackedBar,
+        title: 'Test Graph Title',
+        xAxisOptions: {
+          title: 's1'
+        },
+        yAxisOptions: {
+          title: 'n1'
+        },
+      };
+      let vectors = xyla.bi.mode.dataVectors('test_data_set');
+      new xyla.Graph()
+        .setElementOptions({elementID: 'graph', title: 'Stacked Bar Graph Preview'})
+        .setDataVectors(vectors)
+        .addGroupNamesDimension('s1')
+        .addDistinctValuesDimension('d1')
+        .addSumDimension('n1')
+        .setGraphOptions(options)
+        .render();
+    </script>
+  </body>
+</html>

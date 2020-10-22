@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Xyla Graph Preview</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/annotations.js"></script>
+    <script>
+      window.datasets = [
+        {
+          queryName: 'test_data_set',
+          content: [
+            {n1: 1, n2: 2.15152, n3: 3, s1: 'a', s2: 'b', s3: 'c', d1: '2019-01-08T00:00:00.000Z'},
+            {n1: 4, n2: 5, n3: 6, s1: 'a', s2: 'b', s3: 'd', d1: '2019-01-10T00:00:00.000Z'},
+            {n1: 7, n2: 8, n3: 9, s1: 'a', s2: 'e', s3: 'f', d1: '2019-01-12T00:00:00.000Z'},
+          ],
+        },
+      ];
+    </script>
+  </head>
+  <body>
+    <script src="xyla/xyla.js"></script>
+    <script src="xyla/xyla_tools.js"></script>
+    <script src="xyla/xyla_formatters.js"></script>
+    <script src="xyla/xyla_transformers.js"></script>
+    <script src="xyla/xyla_default.js"></script>
+    <script src="xyla/xyla_thumbnail.js"></script>
+    <script src="xyla/xyla_bi.js"></script>
+    <script src="xyla/xyla_grapher.js"></script>
+
+    <div id="graph"></div>
+    <script>
+      let options = {
+        type: xyla.GraphType.stackedBar,
+        title: 'Test Graph Title',
+        xAxisOptions: {
+          title: 's3',
+          markers: [{
+            position: 2,
+            title: 'Uncrystallized',
+            type: xyla.AxisMarkerType.longDash,
+          }],
+          format: '{value|dateRange:1:days:%m/%d:}',
+          labelRotation: -45,
+        },
+        yAxisOptions: {
+          title: 'n2',
+          format: '{value|number:2:.:,|multiply:4}%',
+          markers: [{
+            position: 7,
+            title: 'Benchmark',
+            type: xyla.AxisMarkerType.line,
+            width: 8,
+            color: '#ff0000',
+          }],
+        },
+        annotations: {
+          groupSum: {
+            position: 'top',
+            yOffset: 10
+          }
+        },
+      };
+      let vectors = xyla.bi.mode.dataVectors('test_data_set');
+      let graph1 = new xyla.Graph()
+        .setDataVectors(vectors)
+        .addGroupNamesDimension('s2')
+        .addDistinctValuesDimension('d1')
+        .addSumDimension('n2')
+        .setGraphOptions(options);
+      let graph2 = new xyla.Graph()
+        .setDataVectors(vectors)
+        .setElementOptions({title: 'graph 2'})
+        .addGroupNamesDimension('s2')
+        .addDistinctValuesDimension('d1')
+        .addSumDimension('n3')
+        .setGraphOptions({
+          yAxisOptions: {
+            title: 'n4',
+            opposite: true,
+            format: '{value|number:5}'
+          }
+        });
+      let multiGraph = new xyla.MultiGraph([graph1, graph2])
+        .setElementOptions({elementID: 'graph', title: 'MultiGraph class preview'})
+        .render();
+    </script>
+  </body>
+</html>

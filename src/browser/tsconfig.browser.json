@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "alwaysStrict": true,
+    "strictNullChecks": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "module": "ES6",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "target": "ES6"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
