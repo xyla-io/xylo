@@ -12,7 +12,9 @@
     ],  
     "moduleResolution": "node",
     "outDir": "dist/workers",
-    "typeRoots": []
+    "typeRoots": [
+      "type_roots_workers"
+    ]
     // "extendedDiagnostics": true,
   },
   "include": [
