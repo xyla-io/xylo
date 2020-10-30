@@ -5,18 +5,20 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "target": "ES6",
+    "target": "es5",
+    "lib": [
+      "webworker",
+      "es2019"
+    ],  
     "moduleResolution": "node",
     "outDir": "dist/workers",
+    "typeRoots": []
     // "extendedDiagnostics": true,
   },
   "include": [
-    "./src/worker",
+    "./src/workers",
     "./src/common",
     "./xylo",
-    "./xyla",
-  ],
-  "lib": [
-    "webworker"
+    "./xyla"
   ]
 }
