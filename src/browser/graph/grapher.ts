@@ -431,7 +431,7 @@ export class Grapher implements pTransformable, pContextual, Templatable {
     console.assert(this.config.graphers.length === this.graphers.length, 'Grapher.graphers configuration and state have divered.');
     const childGrapher = this.childAt(indexOrIdentifier);
     if (!childGrapher) {
-      console.assert(childGrapher, `Invalid child indexOrIdentifier: ${indexOrIdentifier}`);
+      console.assert(!!childGrapher, `Invalid child indexOrIdentifier: ${indexOrIdentifier}`);
       return this;
     }
     const index = typeof(indexOrIdentifier) === 'string' ? this.childIndex(indexOrIdentifier) : indexOrIdentifier;

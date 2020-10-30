@@ -60,7 +60,7 @@ export class Contextual implements iContextual {
   }
 
   pop(): iContextual {
-    console.assert(this.contextStack.length, 'Attempt to pop context with no context stack.');
+    console.assert(!!this.contextStack.length, 'Attempt to pop context with no context stack.');
     this.context = this.contextStack.pop();
     return this;
   }

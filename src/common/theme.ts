@@ -54,7 +54,7 @@ export class Theme implements Templatable {
   mappedColor(path: string|string[], generate: boolean = true): ThemeColor {
     if (!(path.length && this.config.colorMap && this.config.palette && this.config.palette.colors.length)) { return {}; }
     if (!Array.isArray(path)) { path = [path]; }
-    console.assert(path.length % 2, 'Path length must be odd to arrive at color instead of child');
+    console.assert(Boolean(path.length % 2), 'Path length must be odd to arrive at color instead of child');
     let map = this.config.colorMap;
     for (const component of path.slice(0, -1)) {
       if (generate) {
