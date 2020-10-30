@@ -2,7 +2,7 @@
   "name": "xylo",
   "version": "0.0.1",
   "description": "Xyla utility scripts.",
-  "main": "./index.js",
+  "main": "./dist/browser/src/browser/index.js",
   "types": "./types/types.d.ts",
   "scripts": {
     "start_preview": "concurrently --kill-others 'npm run build &> /dev/null && npm run build_continuous &> /dev/null' 'npm run type &> /dev/null && npm run type_continuous &> /dev/null' 'npm run preview &> /dev/null' 'sleep 3 && npm run test_continuous'",
